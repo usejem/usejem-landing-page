@@ -3,10 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Loja Usejem - Cosméticos & Beleza</title>
+  <title>Usejem - Maquiagem Acessível e Real</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <style>
+    :root {
+      --bg-main: #fcf8f6;
+      --bg-subtle: #f7eeea;
+      --surface: #ffffff;
+      --surface-glass: rgba(255, 255, 255, 0.85);
+      --border-soft: rgba(186, 110, 89, 0.16);
+      --border-hover: rgba(186, 110, 89, 0.4);
+      --primary: #ba6e59;
+      --primary-hover: #a35a47;
+      --primary-dark: #6e3d2e;
+      --accent-blush: #de8f7f;
+      --accent-light: #fbeee8;
+      --text-main: #4a2e25;
+      --text-muted: #7d5e53;
+      --text-light: #a48277;
+    }
+
     * {
       box-sizing: border-box;
       margin: 0;
@@ -16,8 +33,8 @@
     html {
       scroll-behavior: smooth;
       font-family: 'Plus Jakarta Sans', sans-serif;
-      background-color: #0f172a;
-      color: #f8fafc;
+      background-color: var(--bg-main);
+      color: var(--text-main);
     }
 
     /* Fixed Navigation Header */
@@ -27,35 +44,39 @@
       left: 0;
       right: 0;
       height: 72px;
-      background: rgba(15, 23, 42, 0.85);
+      background: var(--surface-glass);
       backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      border-bottom: 1px solid var(--border-soft);
       z-index: 1000;
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 0 5%;
+      box-shadow: 0 2px 15px rgba(186, 110, 89, 0.05);
     }
 
     .brand-logo {
-      font-size: 1.5rem;
-      font-weight: 800;
-      color: #ffffff;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
       text-decoration: none;
-      letter-spacing: -0.5px;
     }
 
-    .brand-logo span {
-      color: #ec4899;
+    .brand-logo img {
+      height: 46px;
+      width: auto;
+      object-fit: contain;
+      border-radius: 8px;
     }
 
     nav {
       display: flex;
+      align-items: center;
       gap: 32px;
     }
 
     nav a {
-      color: #cbd5e1;
+      color: var(--text-muted);
       text-decoration: none;
       font-size: 0.95rem;
       font-weight: 500;
@@ -63,20 +84,25 @@
     }
 
     nav a:hover {
-      color: #f472b6;
+      color: var(--primary);
     }
 
     .nav-cta {
-      background: linear-gradient(135deg, #ec4899 0%, #d946ef 100%);
+      background: linear-gradient(135deg, var(--primary) 0%, var(--accent-blush) 100%);
       color: #ffffff !important;
-      padding: 8px 18px;
+      padding: 9px 20px;
       border-radius: 50px;
       font-weight: 600 !important;
-      box-shadow: 0 4px 14px rgba(236, 72, 153, 0.3);
+      box-shadow: 0 4px 14px rgba(186, 110, 89, 0.28);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: transform 0.2s ease, opacity 0.2s ease;
     }
 
     .nav-cta:hover {
-      opacity: 0.9;
+      opacity: 0.95;
+      transform: translateY(-1px);
     }
 
     /* Section Styling */
@@ -94,12 +120,12 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: rgba(236, 72, 153, 0.12);
-      border: 1px solid rgba(236, 72, 153, 0.3);
-      color: #f472b6;
+      background: var(--accent-light);
+      border: 1px solid rgba(186, 110, 89, 0.28);
+      color: var(--primary);
       font-size: 0.85rem;
-      font-weight: 600;
-      padding: 6px 16px;
+      font-weight: 700;
+      padding: 7px 18px;
       border-radius: 50px;
       margin-bottom: 24px;
       text-transform: uppercase;
@@ -113,14 +139,14 @@
 
     .section-title {
       font-size: 2.5rem;
-      font-weight: 700;
+      font-weight: 800;
       margin-bottom: 16px;
-      color: #ffffff;
+      color: var(--primary-dark);
     }
 
     .section-subtitle {
       font-size: 1.1rem;
-      color: #94a3b8;
+      color: var(--text-muted);
       max-width: 640px;
       text-align: center;
       line-height: 1.6;
@@ -129,145 +155,422 @@
 
     /* Section 1: Hero / Institutional Início */
     #inicio {
-      background: radial-gradient(circle at 50% 20%, rgba(236, 72, 153, 0.15) 0%, rgba(15, 23, 42, 1) 70%);
-      text-align: center;
+      background: linear-gradient(
+          to right,
+          rgba(252, 248, 246, 0.95) 0%,
+          rgba(252, 248, 246, 0.8) 32%,
+          rgba(252, 248, 246, 0.25) 50%,
+          rgba(252, 248, 246, 0) 65%
+        ),
+        url('assets/hero-bg.png') right center / cover no-repeat;
+      align-items: flex-start;
+      justify-content: center;
+      text-align: left;
+      padding-left: 8%;
+      padding-right: 8%;
+    }
+
+    .hero-content {
+      max-width: 620px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      text-align: left;
     }
 
     .hero-title {
       font-size: 3.5rem;
       font-weight: 800;
       line-height: 1.15;
-      max-width: 850px;
       margin-bottom: 24px;
+      color: var(--primary-dark);
+      text-align: left;
     }
 
     .hero-title span {
-      background: linear-gradient(135deg, #f472b6 0%, #e879f9 100%);
+      background: linear-gradient(135deg, var(--primary) 0%, var(--accent-blush) 100%);
       -webkit-background-clip: text;
+      background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
     .hero-description {
       font-size: 1.2rem;
-      color: #cbd5e1;
-      max-width: 680px;
+      color: var(--text-muted);
+      max-width: 580px;
       line-height: 1.6;
       margin-bottom: 40px;
+      text-align: left;
     }
 
     .hero-buttons {
       display: flex;
       gap: 16px;
       flex-wrap: wrap;
-      justify-content: center;
+      justify-content: flex-start;
     }
 
     .btn-primary {
-      background: linear-gradient(135deg, #ec4899 0%, #d946ef 100%);
+      background: linear-gradient(135deg, var(--primary) 0%, var(--accent-blush) 100%);
       color: #ffffff;
-      padding: 16px 36px;
-      border-radius: 12px;
+      padding: 16px 34px;
+      border-radius: 14px;
       font-weight: 600;
       font-size: 1rem;
       text-decoration: none;
-      box-shadow: 0 10px 25px -5px rgba(236, 72, 153, 0.4);
+      box-shadow: 0 10px 25px -5px rgba(186, 110, 89, 0.35);
       transition: transform 0.2s ease, box-shadow 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
     }
 
     .btn-primary:hover {
       transform: translateY(-2px);
-      box-shadow: 0 14px 30px -5px rgba(236, 72, 153, 0.5);
+      box-shadow: 0 14px 30px -5px rgba(186, 110, 89, 0.45);
     }
 
     .btn-secondary {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      color: #f8fafc;
-      padding: 16px 36px;
-      border-radius: 12px;
+      background: var(--surface);
+      border: 1px solid var(--border-soft);
+      color: var(--primary-dark);
+      padding: 16px 34px;
+      border-radius: 14px;
       font-weight: 600;
       font-size: 1rem;
       text-decoration: none;
-      transition: background 0.2s ease, border-color 0.2s ease;
+      transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+      box-shadow: 0 4px 15px rgba(186, 110, 89, 0.08);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
     }
 
     .btn-secondary:hover {
-      background: rgba(255, 255, 255, 0.1);
-      border-color: rgba(255, 255, 255, 0.3);
+      background: var(--accent-light);
+      border-color: var(--border-hover);
+      transform: translateY(-2px);
     }
 
-    /* Section 2: Marcas & Linhas */
-    #marcas {
-      background: #0b1120;
+    /* Section: Nossas Marcas (Carrossel com Fundo Branco) */
+    #nossas-marcas {
+      background-color: #ffffff;
       width: 100%;
+      min-height: auto;
+      padding: 70px 0 80px;
+      overflow: hidden;
+      border-bottom: 1px solid var(--border-soft);
     }
 
-    .grid-cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 28px;
+    .carousel-wrapper {
       width: 100%;
-      max-width: 1140px;
+      overflow: hidden;
+      position: relative;
+      margin-top: 10px;
+      padding: 20px 0;
+      /* Gradientes de desvanecimento suaves nas extremidades */
+      mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+      -webkit-mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
     }
 
-    .card {
-      background: rgba(30, 41, 59, 0.5);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 20px;
-      padding: 36px 28px;
-      transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    .carousel-track {
+      display: flex;
+      width: max-content;
+      animation: scrollBrands 70s linear infinite;
+      will-change: transform;
+    }
+
+    .carousel-group {
+      display: flex;
+      align-items: center;
+      gap: 48px;
+      padding-right: 48px; /* Mantém exatamente o mesmo espaçamento entre o último item e o primeiro da repetição */
+      flex-shrink: 0;
+    }
+
+    .carousel-track:hover {
+      animation-play-state: paused;
+    }
+
+    @keyframes scrollBrands {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+
+    .brand-circle-item {
       display: flex;
       flex-direction: column;
-      align-items: flex-start;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+      flex-shrink: 0;
+      transition: transform 0.3s ease;
     }
 
-    .card:hover {
+    .brand-circle-item:hover {
       transform: translateY(-6px);
-      border-color: rgba(236, 72, 153, 0.4);
-      box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.5);
     }
 
-    .card-icon {
-      width: 56px;
-      height: 56px;
-      border-radius: 14px;
-      background: rgba(236, 72, 153, 0.1);
-      color: #f472b6;
+    .brand-circle {
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      background: #ffffff;
+      border: 3px solid rgba(186, 110, 89, 0.22);
+      box-shadow: 0 8px 24px rgba(186, 110, 89, 0.12);
+      overflow: hidden;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.5rem;
-      margin-bottom: 24px;
+      padding: 4px;
+      transition: all 0.3s ease;
     }
 
-    .card h3 {
-      font-size: 1.35rem;
-      font-weight: 700;
-      margin-bottom: 12px;
-      color: #f8fafc;
+    .brand-circle-item:hover .brand-circle {
+      border-color: var(--primary);
+      box-shadow: 0 14px 30px rgba(186, 110, 89, 0.26);
     }
 
-    .card p {
-      color: #94a3b8;
-      font-size: 0.95rem;
-      line-height: 1.6;
-    }
-
-    /* Section 3: Contato & Atendimento VIP */
-    #contato {
-      background: radial-gradient(circle at 50% 80%, rgba(217, 70, 239, 0.1) 0%, rgba(15, 23, 42, 1) 70%);
+    .brand-circle img {
       width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.35s ease;
+    }
+
+    .brand-circle-item:hover .brand-circle img {
+      transform: scale(1.08);
+    }
+
+    .brand-circle-name {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--primary-dark);
+      letter-spacing: -0.2px;
+    }
+
+    /* Section: Sobre Nós */
+    #sobre {
+      background-color: #f7eeea;
+      width: 100%;
+      min-height: auto;
+      padding: 100px 8%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .about-container {
+      max-width: 1140px;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      align-items: center;
+      gap: 56px;
+    }
+
+    .about-text {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      text-align: left;
+    }
+
+    .about-text .badge {
+      margin-bottom: 20px;
+    }
+
+    .about-text h2 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--primary-dark);
+      line-height: 1.2;
+      margin-bottom: 24px;
+      text-align: left;
+    }
+
+    .about-text h2 span {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--accent-blush) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .about-text p {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      line-height: 1.75;
+      margin-bottom: 18px;
+    }
+
+    .about-text p strong {
+      color: var(--primary-dark);
+      font-weight: 700;
+    }
+
+    .about-quote {
+      margin-top: 10px;
+      padding: 16px 20px;
+      background: rgba(255, 255, 255, 0.65);
+      border-left: 4px solid var(--primary);
+      border-radius: 0 12px 12px 0;
+      font-style: italic;
+      color: var(--primary-dark);
+      font-size: 0.98rem;
+    }
+
+    .about-image-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    .about-image-card {
+      width: 100%;
+      max-width: 420px;
+      background: #ffffff;
+      padding: 24px;
+      border-radius: 28px;
+      border: 1px solid var(--border-soft);
+      box-shadow: 0 20px 45px -12px rgba(186, 110, 89, 0.18);
+      position: relative;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .about-image-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 26px 55px -12px rgba(186, 110, 89, 0.25);
+    }
+
+    .about-image-card img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 18px;
+      object-fit: cover;
+    }
+
+    .about-image-caption {
+      margin-top: 14px;
+      text-align: center;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--primary);
+      letter-spacing: 0.3px;
+    }
+
+    /* Section: Marketplaces */
+    #marketplaces {
+      background-color: #f7eeea;
+      width: 100%;
+      min-height: auto;
+      padding: 90px 8%;
+      text-align: center;
+      border-bottom: 1px solid var(--border-soft);
+    }
+
+    .marketplaces-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 32px;
+      max-width: 1080px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    .marketplace-card {
+      background: #ffffff;
+      border: 1px solid var(--border-soft);
+      border-radius: 22px;
+      padding: 36px 28px 30px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-decoration: none;
+      box-shadow: 0 8px 24px rgba(186, 110, 89, 0.1);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      cursor: pointer;
+    }
+
+    .marketplace-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--primary);
+      box-shadow: 0 20px 40px -10px rgba(186, 110, 89, 0.25);
+    }
+
+    .marketplace-logo-box {
+      width: 100%;
+      height: 90px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      padding: 10px 16px;
+      background: #ffffff;
+      border-radius: 14px;
+    }
+
+    .marketplace-logo-box img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      transition: transform 0.3s ease;
+    }
+
+    .marketplace-card:hover .marketplace-logo-box img {
+      transform: scale(1.06);
+    }
+
+    .marketplace-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--primary-dark);
+      margin-bottom: 8px;
+    }
+
+    .marketplace-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--primary);
+      background: var(--accent-light);
+      padding: 6px 14px;
+      border-radius: 50px;
+      transition: all 0.25s ease;
+    }
+
+    .marketplace-card:hover .marketplace-status {
+      background: var(--primary);
+      color: #ffffff;
+    }
+
+    /* Section: Atendimento Direct & WhatsApp */
+    #contato {
+      background-color: #ffffff;
+      width: 100%;
+      min-height: auto;
+      padding: 100px 5%;
+      border-top: 1px solid var(--border-soft);
     }
 
     .contact-box {
-      background: rgba(30, 41, 59, 0.7);
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: var(--bg-subtle);
+      border: 1px solid var(--border-soft);
       border-radius: 24px;
       padding: 48px;
       width: 100%;
       max-width: 800px;
-      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
+      box-shadow: 0 20px 45px -10px rgba(186, 110, 89, 0.12);
       text-align: center;
     }
 
@@ -283,55 +586,94 @@
       display: flex;
       align-items: center;
       gap: 12px;
-      background: rgba(15, 23, 42, 0.8);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: #ffffff;
+      border: 1px solid var(--border-soft);
       padding: 16px 28px;
       border-radius: 14px;
-      color: #f8fafc;
+      color: var(--primary-dark);
       text-decoration: none;
       font-weight: 600;
       font-size: 1rem;
       transition: all 0.25s ease;
+      box-shadow: 0 2px 8px rgba(186, 110, 89, 0.05);
     }
 
     .channel-btn.whatsapp:hover {
       background: #25d366;
       color: #ffffff;
       border-color: #25d366;
+      box-shadow: 0 6px 20px rgba(37, 211, 102, 0.35);
     }
 
     .channel-btn.instagram:hover {
       background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
       color: #ffffff;
       border-color: transparent;
-    }
-
-    .channel-btn.email:hover {
-      background: #ec4899;
-      color: #ffffff;
-      border-color: #ec4899;
+      box-shadow: 0 6px 20px rgba(220, 39, 67, 0.35);
     }
 
     /* Footer */
     footer {
-      background: #070a13;
-      padding: 32px 5%;
-      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      background: linear-gradient(135deg, var(--primary) 0%, var(--accent-blush) 100%);
+      padding: 20px 5%;
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
       text-align: center;
-      color: #64748b;
-      font-size: 0.9rem;
+      color: #ffffff;
+      box-shadow: 0 -4px 20px rgba(186, 110, 89, 0.15);
+    }
+
+    footer p {
+      color: rgba(255, 255, 255, 0.95);
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.2px;
     }
 
     /* Responsive adjustments */
     @media (max-width: 768px) {
       header nav {
-        display: none; /* Em breve responsivo simples */
+        display: none;
+      }
+      #inicio {
+        background: linear-gradient(
+            rgba(252, 248, 246, 0.92),
+            rgba(252, 248, 246, 0.92)
+          ),
+          url('assets/hero-bg.png') center / cover no-repeat;
+        padding: 120px 5% 60px;
+        align-items: center;
+        text-align: center;
+      }
+      .hero-content {
+        align-items: center;
+        text-align: center;
+      }
+      .hero-title,
+      .hero-description {
+        text-align: center;
+      }
+      .hero-buttons {
+        justify-content: center;
       }
       .hero-title {
         font-size: 2.4rem;
       }
       .section-title {
         font-size: 2rem;
+      }
+      .about-container {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      .about-text {
+        align-items: center;
+        text-align: center;
+      }
+      .about-text h2 {
+        text-align: center;
+      }
+      .about-quote {
+        text-align: left;
       }
       .contact-box {
         padding: 32px 20px;
@@ -347,65 +689,367 @@
 
   <!-- Navegação Fixa -->
   <header>
-    <a href="#inicio" class="brand-logo">Loja <span>Usejem</span></a>
+    <a href="#inicio" class="brand-logo" title="usejem">
+      <img src="assets/logo.png" alt="usejem - Maquiagem Acessível e Real">
+    </a>
     <nav>
       <a href="#inicio">Início</a>
-      <a href="#marcas">O que Oferecemos</a>
-      <a href="#contato" class="nav-cta">Falar Conosco</a>
+      <a href="#marketplaces">Onde Comprar</a>
+      <a href="#nossas-marcas">Marcas</a>
+      <a href="#sobre">Sobre Nós</a>
+      <a href="#contato">Atendimento</a>
+      <a href="https://wa.me/5511994788028" target="_blank" rel="noopener noreferrer" class="nav-cta">
+        <i class="fa-brands fa-whatsapp"></i> WhatsApp
+      </a>
     </nav>
   </header>
 
   <!-- Seção 1: Início / Apresentação Institucional -->
   <section id="inicio">
-    <div class="badge">
-      <i class="fa-solid fa-sparkles"></i> Revendedora Oficial
+    <div class="hero-content">
+      <div class="badge">
+        <i class="fa-solid fa-heart"></i> Maquiagem Acessível e Real
+      </div>
+      <h1 class="hero-title">Sua beleza autêntica com a <span>usejem</span></h1>
+      <p class="hero-description">
+        Maquiagem acessível e real. Selecionamos produtos de qualidade para valorizar a sua beleza no dia a dia, com atendimento acolhedor e personalizado.
+      </p>
+      <div class="hero-buttons">
+        <a href="https://wa.me/5511994788028" target="_blank" rel="noopener noreferrer" class="btn-primary">
+          <i class="fa-brands fa-whatsapp"></i> Chamar no WhatsApp
+        </a>
+        <a href="https://www.instagram.com/_usejem/" target="_blank" rel="noopener noreferrer" class="btn-secondary">
+          <i class="fa-brands fa-instagram"></i> Seguir @_usejem
+        </a>
+      </div>
     </div>
-    <h1 class="hero-title">Sua beleza em evidência com os <span>melhores cosméticos</span></h1>
-    <p class="hero-description">
-      Na Loja Usejem, selecionamos criteriosamente produtos de beleza, maquiagem e cuidados pessoais das marcas mais desejadas. Qualidade, autenticidade e entrega rápida para você.
+  </section>
+
+  <!-- Seção 2: Nossos Marketplaces (Onde Comprar) -->
+  <section id="marketplaces">
+    <div class="badge">
+      <i class="fa-solid fa-bag-shopping"></i> Onde Comprar
+    </div>
+    <h2 class="section-title">Encontre a usejem nos Marketplaces</h2>
+    <p class="section-subtitle">
+      Em breve você poderá adquirir seus produtos favoritos com toda a segurança, frete facilitado e garantia das principais plataformas.
     </p>
-    <div class="hero-buttons">
-      <a href="#marcas" class="btn-primary">Conhecer Linhas</a>
-      <a href="#contato" class="btn-secondary">Atendimento Personalizado</a>
+
+    <div class="marketplaces-grid">
+      <!-- Mercado Livre -->
+      <a href="#" class="marketplace-card" title="Loja usejem no Mercado Livre (Em breve)">
+        <div class="marketplace-logo-box">
+          <img src="assets/marketplaces/mercado-livre.png" alt="Mercado Livre">
+        </div>
+        <h3 class="marketplace-title">Mercado Livre</h3>
+        <span class="marketplace-status">
+          <i class="fa-solid fa-clock"></i> Loja em breve
+        </span>
+      </a>
+
+      <!-- Shopee -->
+      <a href="#" class="marketplace-card" title="Loja usejem na Shopee (Em breve)">
+        <div class="marketplace-logo-box">
+          <img src="assets/marketplaces/shopee.png" alt="Shopee">
+        </div>
+        <h3 class="marketplace-title">Shopee</h3>
+        <span class="marketplace-status">
+          <i class="fa-solid fa-clock"></i> Loja em breve
+        </span>
+      </a>
+
+      <!-- Beleza na Web -->
+      <a href="#" class="marketplace-card" title="Loja usejem na Beleza na Web (Em breve)">
+        <div class="marketplace-logo-box">
+          <img src="assets/marketplaces/beleza-na-web.png" alt="Beleza na Web">
+        </div>
+        <h3 class="marketplace-title">Beleza na Web</h3>
+        <span class="marketplace-status">
+          <i class="fa-solid fa-clock"></i> Loja em breve
+        </span>
+      </a>
     </div>
   </section>
 
-  <!-- Seção 2: Marcas & Categorias -->
-  <section id="marcas">
+  <!-- Seção: Nossas Marcas (Fundo Branco & Carrossel Circular Contínuo) -->
+  <section id="nossas-marcas">
     <div class="badge">
-      <i class="fa-solid fa-gem"></i> Nossas Linhas
+      <i class="fa-solid fa-star"></i> Catálogo Multimarcas
     </div>
-    <h2 class="section-title">O que você encontra na Usejem</h2>
-    <p class="section-subtitle">Trabalhamos com catálogos atualizados para garantir os últimos lançamentos do mercado de cosméticos.</p>
-    
-    <div class="grid-cards">
-      <div class="card">
-        <div class="card-icon">
-          <i class="fa-solid fa-pump-soap"></i>
-        </div>
-        <h3>Skincare & Cuidados</h3>
-        <p>Séruns, hidratantes e protetores solares selecionados para manter sua pele saudável e radiante todos os dias.</p>
-      </div>
+    <h2 class="section-title">Nossas Marcas</h2>
+    <p class="section-subtitle" style="margin-bottom: 24px;">
+      Trabalhamos com as marcas mais queridinhas e recomendadas para realçar sua maquiagem com máxima qualidade e preço justo.
+    </p>
 
-      <div class="card">
-        <div class="card-icon">
-          <i class="fa-solid fa-wand-magic-sparkles"></i>
-        </div>
-        <h3>Maquiagem</h3>
-        <p>Bases, batons, sombras e pincéis de alta fixação para produções do dia a dia ou ocasiões especiais.</p>
-      </div>
+    <div class="carousel-wrapper">
+      <div class="carousel-track">
+        <!-- 1ª sequência de marcas (repetida para cobrir qualquer largura de tela sem gaps) -->
+        <div class="carousel-group">
+          <!-- Ciclo 1 -->
+          <div class="brand-circle-item">
+            <div class="brand-circle">
+              <img src="assets/marcas/fenzza.png" alt="Fenzza">
+            </div>
+            <span class="brand-circle-name">Fenzza</span>
+          </div>
+          <div class="brand-circle-item">
+            <div class="brand-circle">
+              <img src="assets/marcas/dailus.png" alt="Dailus">
+            </div>
+            <span class="brand-circle-name">Dailus</span>
+          </div>
+          <div class="brand-circle-item">
+            <div class="brand-circle">
+              <img src="assets/marcas/max-love.png" alt="Max Love Make-up Studio">
+            </div>
+            <span class="brand-circle-name">Max Love</span>
+          </div>
+          <div class="brand-circle-item">
+            <div class="brand-circle">
+              <img src="assets/marcas/melu.png" alt="Melu">
+            </div>
+            <span class="brand-circle-name">Melu</span>
+          </div>
+          <div class="brand-circle-item">
+            <div class="brand-circle">
+              <img src="assets/marcas/ruby-rose.png" alt="Ruby Rose">
+            </div>
+            <span class="brand-circle-name">Ruby Rose</span>
+          </div>
+          <div class="brand-circle-item">
+            <div class="brand-circle">
+              <img src="assets/marcas/bella-bem-me-quero.png" alt="Bella Bem Me Quero">
+            </div>
+            <span class="brand-circle-name">Bella Bem Me Quero</span>
+          </div>
 
-      <div class="card">
-        <div class="card-icon">
-          <i class="fa-solid fa-spray-can-sparkles"></i>
+          <!-- Ciclo 2 -->
+          <div class="brand-circle-item">
+            <div class="brand-circle">
+              <img src="assets/marcas/fenzza.png" alt="Fenzza">
+            </div>
+            <span class="brand-circle-name">Fenzza</span>
+          </div>
+          <div class="brand-circle-item">
+            <div class="brand-circle">
+              <img src="assets/marcas/dailus.png" alt="Dailus">
+            </div>
+            <span class="brand-circle-name">Dailus</span>
+          </div>
+          <div class="brand-circle-item">
+            <div class="brand-circle">
+              <img src="assets/marcas/max-love.png" alt="Max Love Make-up Studio">
+            </div>
+            <span class="brand-circle-name">Max Love</span>
+          </div>
+          <div class="brand-circle-item">
+            <div class="brand-circle">
+              <img src="assets/marcas/melu.png" alt="Melu">
+            </div>
+            <span class="brand-circle-name">Melu</span>
+          </div>
+          <div class="brand-circle-item">
+            <div class="brand-circle">
+              <img src="assets/marcas/ruby-rose.png" alt="Ruby Rose">
+            </div>
+            <span class="brand-circle-name">Ruby Rose</span>
+          </div>
+          <div class="brand-circle-item">
+            <div class="brand-circle">
+              <img src="assets/marcas/bella-bem-me-quero.png" alt="Bella Bem Me Quero">
+            </div>
+            <span class="brand-circle-name">Bella Bem Me Quero</span>
+          </div>
+
+          <!-- Ciclo 3 -->
+          <div class="brand-circle-item">
+            <div class="brand-circle">
+              <img src="assets/marcas/fenzza.png" alt="Fenzza">
+            </div>
+            <span class="brand-circle-name">Fenzza</span>
+          </div>
+          <div class="brand-circle-item">
+            <div class="brand-circle">
+              <img src="assets/marcas/dailus.png" alt="Dailus">
+            </div>
+            <span class="brand-circle-name">Dailus</span>
+          </div>
+          <div class="brand-circle-item">
+            <div class="brand-circle">
+              <img src="assets/marcas/max-love.png" alt="Max Love Make-up Studio">
+            </div>
+            <span class="brand-circle-name">Max Love</span>
+          </div>
+          <div class="brand-circle-item">
+            <div class="brand-circle">
+              <img src="assets/marcas/melu.png" alt="Melu">
+            </div>
+            <span class="brand-circle-name">Melu</span>
+          </div>
+          <div class="brand-circle-item">
+            <div class="brand-circle">
+              <img src="assets/marcas/ruby-rose.png" alt="Ruby Rose">
+            </div>
+            <span class="brand-circle-name">Ruby Rose</span>
+          </div>
+          <div class="brand-circle-item">
+            <div class="brand-circle">
+              <img src="assets/marcas/bella-bem-me-quero.png" alt="Bella Bem Me Quero">
+            </div>
+            <span class="brand-circle-name">Bella Bem Me Quero</span>
+          </div>
         </div>
-        <h3>Perfumaria & Corpo</h3>
-        <p>Fragrâncias marcantes, loções corporais e óleos de banho para momentos únicos de autocuidado.</p>
+
+        <!-- 2ª sequência idêntica para espelhamento contínuo perfeito -->
+        <div class="carousel-group" aria-hidden="true">
+          <!-- Ciclo 1 -->
+          <div class="brand-circle-item">
+            <div class="brand-circle">
+              <img src="assets/marcas/fenzza.png" alt="Fenzza">
+            </div>
+            <span class="brand-circle-name">Fenzza</span>
+          </div>
+          <div class="brand-circle-item">
+            <div class="brand-circle">
+              <img src="assets/marcas/dailus.png" alt="Dailus">
+            </div>
+            <span class="brand-circle-name">Dailus</span>
+          </div>
+          <div class="brand-circle-item">
+            <div class="brand-circle">
+              <img src="assets/marcas/max-love.png" alt="Max Love Make-up Studio">
+            </div>
+            <span class="brand-circle-name">Max Love</span>
+          </div>
+          <div class="brand-circle-item">
+            <div class="brand-circle">
+              <img src="assets/marcas/melu.png" alt="Melu">
+            </div>
+            <span class="brand-circle-name">Melu</span>
+          </div>
+          <div class="brand-circle-item">
+            <div class="brand-circle">
+              <img src="assets/marcas/ruby-rose.png" alt="Ruby Rose">
+            </div>
+            <span class="brand-circle-name">Ruby Rose</span>
+          </div>
+          <div class="brand-circle-item">
+            <div class="brand-circle">
+              <img src="assets/marcas/bella-bem-me-quero.png" alt="Bella Bem Me Quero">
+            </div>
+            <span class="brand-circle-name">Bella Bem Me Quero</span>
+          </div>
+
+          <!-- Ciclo 2 -->
+          <div class="brand-circle-item">
+            <div class="brand-circle">
+              <img src="assets/marcas/fenzza.png" alt="Fenzza">
+            </div>
+            <span class="brand-circle-name">Fenzza</span>
+          </div>
+          <div class="brand-circle-item">
+            <div class="brand-circle">
+              <img src="assets/marcas/dailus.png" alt="Dailus">
+            </div>
+            <span class="brand-circle-name">Dailus</span>
+          </div>
+          <div class="brand-circle-item">
+            <div class="brand-circle">
+              <img src="assets/marcas/max-love.png" alt="Max Love Make-up Studio">
+            </div>
+            <span class="brand-circle-name">Max Love</span>
+          </div>
+          <div class="brand-circle-item">
+            <div class="brand-circle">
+              <img src="assets/marcas/melu.png" alt="Melu">
+            </div>
+            <span class="brand-circle-name">Melu</span>
+          </div>
+          <div class="brand-circle-item">
+            <div class="brand-circle">
+              <img src="assets/marcas/ruby-rose.png" alt="Ruby Rose">
+            </div>
+            <span class="brand-circle-name">Ruby Rose</span>
+          </div>
+          <div class="brand-circle-item">
+            <div class="brand-circle">
+              <img src="assets/marcas/bella-bem-me-quero.png" alt="Bella Bem Me Quero">
+            </div>
+            <span class="brand-circle-name">Bella Bem Me Quero</span>
+          </div>
+
+          <!-- Ciclo 3 -->
+          <div class="brand-circle-item">
+            <div class="brand-circle">
+              <img src="assets/marcas/fenzza.png" alt="Fenzza">
+            </div>
+            <span class="brand-circle-name">Fenzza</span>
+          </div>
+          <div class="brand-circle-item">
+            <div class="brand-circle">
+              <img src="assets/marcas/dailus.png" alt="Dailus">
+            </div>
+            <span class="brand-circle-name">Dailus</span>
+          </div>
+          <div class="brand-circle-item">
+            <div class="brand-circle">
+              <img src="assets/marcas/max-love.png" alt="Max Love Make-up Studio">
+            </div>
+            <span class="brand-circle-name">Max Love</span>
+          </div>
+          <div class="brand-circle-item">
+            <div class="brand-circle">
+              <img src="assets/marcas/melu.png" alt="Melu">
+            </div>
+            <span class="brand-circle-name">Melu</span>
+          </div>
+          <div class="brand-circle-item">
+            <div class="brand-circle">
+              <img src="assets/marcas/ruby-rose.png" alt="Ruby Rose">
+            </div>
+            <span class="brand-circle-name">Ruby Rose</span>
+          </div>
+          <div class="brand-circle-item">
+            <div class="brand-circle">
+              <img src="assets/marcas/bella-bem-me-quero.png" alt="Bella Bem Me Quero">
+            </div>
+            <span class="brand-circle-name">Bella Bem Me Quero</span>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Seção 3: Atendimento & Contato -->
+  <!-- Seção: Sobre Nós -->
+  <section id="sobre">
+    <div class="about-container">
+      <!-- Lado Esquerdo: Texto sobre a nossa história e propósito -->
+      <div class="about-text">
+        <div class="badge">
+          <i class="fa-solid fa-heart"></i> Sobre Nós
+        </div>
+        <h2>Feito por quem entende <span>o seu dia a dia</span></h2>
+        <p>
+          A gente sabe na pele como é difícil encontrar, em um único lugar, uma seleção confiável de maquiagens e cuidados faciais que realmente entreguem resultado sem custar uma fortuna. Quantas vezes nós mesmas já perdemos horas pulando de loja em loja procurando produtos que combinassem qualidade, praticidade e preço justo?
+        </p>
+        <p>
+          Foi dessa vontade que criamos a <strong>usejem</strong>. Cada item do nosso catálogo passa pelas nossas mãos: <strong>nós testamos, usamos na nossa rotina diária e só indicamos o que realmente amamos e aprovamos</strong>.
+        </p>
+        <div class="about-quote">
+          "A maquiagem real é aquela que cabe na sua rotina, no seu bolso e que valoriza quem você já é — e nós estamos aqui para facilitar esse caminho para você." — Jaíne C.
+        </div>
+      </div>
+
+      <!-- Lado Direito: Ilustração em silhueta das 3 fundadoras -->
+      <div class="about-image-wrapper">
+        <div class="about-image-card">
+          <img src="assets/fundadoras.png" alt="Silhueta das 3 fundadoras da usejem">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Seção Final: Atendimento Direct & WhatsApp -->
   <section id="contato">
     <div class="contact-box">
       <div class="badge">
@@ -417,14 +1061,11 @@
       </p>
 
       <div class="contact-channels">
-        <a href="https://wa.me/5500000000000" target="_blank" class="channel-btn whatsapp">
-          <i class="fa-brands fa-whatsapp"></i> Chamar no WhatsApp
+        <a href="https://wa.me/5511994788028" target="_blank" rel="noopener noreferrer" class="channel-btn whatsapp">
+          <i class="fa-brands fa-whatsapp"></i> (11) 99478-8028
         </a>
-        <a href="https://instagram.com" target="_blank" class="channel-btn instagram">
-          <i class="fa-brands fa-instagram"></i> Ver no Instagram
-        </a>
-        <a href="mailto:contato@usejem.com.br" class="channel-btn email">
-          <i class="fa-regular fa-envelope"></i> Enviar E-mail
+        <a href="https://www.instagram.com/_usejem/" target="_blank" rel="noopener noreferrer" class="channel-btn instagram">
+          <i class="fa-brands fa-instagram"></i> @_usejem
         </a>
       </div>
     </div>
@@ -432,7 +1073,7 @@
 
   <!-- Rodapé -->
   <footer>
-    <p>&copy; 2026 Loja Usejem — Revendedora de Cosméticos. Todos os direitos reservados.</p>
+    <p>&copy; 2026 usejem — Maquiagem Acessível e Real. Todos os direitos reservados.</p>
   </footer>
 
 </body>
