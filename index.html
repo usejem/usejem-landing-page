@@ -484,11 +484,22 @@
 
     .about-image-caption {
       margin-top: 14px;
-      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
       font-size: 0.88rem;
       font-weight: 600;
       color: var(--primary);
       letter-spacing: 0.3px;
+    }
+
+    .about-image-caption img {
+      width: 18px;
+      height: 18px;
+      border-radius: 4px;
+      object-fit: contain;
+      display: inline-block;
     }
 
     /* Section: Marketplaces */
@@ -1153,7 +1164,10 @@
       <!-- Lado Direito: Ilustração em silhueta das 3 fundadoras -->
       <div class="about-image-wrapper">
         <div class="about-image-card">
-          <img src="assets/fundadoras.png" alt="Silhueta das 3 fundadoras da usejem">
+          <img src="assets/fundadoras.png" alt="Silhueta das 3 fundadoras da usejem: Emanuelle, Jaíne e Monique">
+          <p class="about-image-caption">
+            Emanuelle, Jaíne e Monique <img src="assets/favicon.png" alt="Favicon usejem">
+          </p>
         </div>
       </div>
     </div>
