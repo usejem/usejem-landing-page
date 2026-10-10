@@ -1,173 +1,439 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Loja Usejem - Em Breve</title>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <!-- FontAwesome para ícones -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Loja Usejem - Cosméticos & Beleza</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-            color: #f8fafc;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
+    html {
+      scroll-behavior: smooth;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #0f172a;
+      color: #f8fafc;
+    }
 
-        .container {
-            max-width: 600px;
-            width: 100%;
-            background: rgba(30, 41, 59, 0.7);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 40px 30px;
-            border-radius: 16px;
-            text-align: center;
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
-        }
+    /* Fixed Navigation Header */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 72px;
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 5%;
+    }
 
-        .badge {
-            display: inline-block;
-            background: rgba(99, 102, 241, 0.2);
-            color: #818cf8;
-            font-size: 0.85rem;
-            font-weight: 600;
-            padding: 6px 14px;
-            border-radius: 50px;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
+    .brand-logo {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #ffffff;
+      text-decoration: none;
+      letter-spacing: -0.5px;
+    }
 
-        h1 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 15px;
-            color: #ffffff;
-        }
+    .brand-logo span {
+      color: #ec4899;
+    }
 
-        h1 span {
-            color: #818cf8;
-        }
+    nav {
+      display: flex;
+      gap: 32px;
+    }
 
-        p {
-            font-size: 1rem;
-            color: #94a3b8;
-            line-height: 1.6;
-            margin-bottom: 30px;
-        }
+    nav a {
+      color: #cbd5e1;
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: color 0.25s ease;
+    }
 
-        .subscribe-form {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 30px;
-            flex-wrap: wrap;
-        }
+    nav a:hover {
+      color: #f472b6;
+    }
 
-        .subscribe-form input {
-            flex: 1;
-            min-width: 240px;
-            padding: 14px 16px;
-            background: rgba(15, 23, 42, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: 8px;
-            color: #fff;
-            font-size: 0.95rem;
-            outline: none;
-            transition: border-color 0.3s;
-        }
+    .nav-cta {
+      background: linear-gradient(135deg, #ec4899 0%, #d946ef 100%);
+      color: #ffffff !important;
+      padding: 8px 18px;
+      border-radius: 50px;
+      font-weight: 600 !important;
+      box-shadow: 0 4px 14px rgba(236, 72, 153, 0.3);
+    }
 
-        .subscribe-form input:focus {
-            border-color: #818cf8;
-        }
+    .nav-cta:hover {
+      opacity: 0.9;
+    }
 
-        .subscribe-form button {
-            background: #6366f1;
-            color: #fff;
-            border: none;
-            padding: 14px 24px;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
+    /* Section Styling */
+    section {
+      min-height: 100vh;
+      padding: 120px 5% 80px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
 
-        .subscribe-form button:hover {
-            background: #4f46e5;
-        }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(236, 72, 153, 0.12);
+      border: 1px solid rgba(236, 72, 153, 0.3);
+      color: #f472b6;
+      font-size: 0.85rem;
+      font-weight: 600;
+      padding: 6px 16px;
+      border-radius: 50px;
+      margin-bottom: 24px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
 
-        .social-icons {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-        }
+    h1, h2 {
+      text-align: center;
+      letter-spacing: -1px;
+    }
 
-        .social-icons a {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 40px;
-            height: 40px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            color: #94a3b8;
-            font-size: 1rem;
-            text-decoration: none;
-            transition: all 0.3s;
-        }
+    .section-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+      color: #ffffff;
+    }
 
-        .social-icons a:hover {
-            background: #6366f1;
-            color: #fff;
-            border-color: #6366f1;
-            transform: translateY(-3px);
-        }
+    .section-subtitle {
+      font-size: 1.1rem;
+      color: #94a3b8;
+      max-width: 640px;
+      text-align: center;
+      line-height: 1.6;
+      margin-bottom: 48px;
+    }
 
-        @media (max-width: 480px) {
-            h1 {
-                font-size: 2rem;
-            }
-            .subscribe-form {
-                flex-direction: column;
-            }
-            .subscribe-form button {
-                width: 100%;
-            }
-        }
-    </style>
+    /* Section 1: Hero / Institutional Início */
+    #inicio {
+      background: radial-gradient(circle at 50% 20%, rgba(236, 72, 153, 0.15) 0%, rgba(15, 23, 42, 1) 70%);
+      text-align: center;
+    }
+
+    .hero-title {
+      font-size: 3.5rem;
+      font-weight: 800;
+      line-height: 1.15;
+      max-width: 850px;
+      margin-bottom: 24px;
+    }
+
+    .hero-title span {
+      background: linear-gradient(135deg, #f472b6 0%, #e879f9 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-description {
+      font-size: 1.2rem;
+      color: #cbd5e1;
+      max-width: 680px;
+      line-height: 1.6;
+      margin-bottom: 40px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #ec4899 0%, #d946ef 100%);
+      color: #ffffff;
+      padding: 16px 36px;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 1rem;
+      text-decoration: none;
+      box-shadow: 0 10px 25px -5px rgba(236, 72, 153, 0.4);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 30px -5px rgba(236, 72, 153, 0.5);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #f8fafc;
+      padding: 16px 36px;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: background 0.2s ease, border-color 0.2s ease;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+
+    /* Section 2: Marcas & Linhas */
+    #marcas {
+      background: #0b1120;
+      width: 100%;
+    }
+
+    .grid-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 28px;
+      width: 100%;
+      max-width: 1140px;
+    }
+
+    .card {
+      background: rgba(30, 41, 59, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 20px;
+      padding: 36px 28px;
+      transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(236, 72, 153, 0.4);
+      box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.5);
+    }
+
+    .card-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 14px;
+      background: rgba(236, 72, 153, 0.1);
+      color: #f472b6;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      margin-bottom: 24px;
+    }
+
+    .card h3 {
+      font-size: 1.35rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: #f8fafc;
+    }
+
+    .card p {
+      color: #94a3b8;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    /* Section 3: Contato & Atendimento VIP */
+    #contato {
+      background: radial-gradient(circle at 50% 80%, rgba(217, 70, 239, 0.1) 0%, rgba(15, 23, 42, 1) 70%);
+      width: 100%;
+    }
+
+    .contact-box {
+      background: rgba(30, 41, 59, 0.7);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 24px;
+      padding: 48px;
+      width: 100%;
+      max-width: 800px;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
+      text-align: center;
+    }
+
+    .contact-channels {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 32px;
+    }
+
+    .channel-btn {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 16px 28px;
+      border-radius: 14px;
+      color: #f8fafc;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: all 0.25s ease;
+    }
+
+    .channel-btn.whatsapp:hover {
+      background: #25d366;
+      color: #ffffff;
+      border-color: #25d366;
+    }
+
+    .channel-btn.instagram:hover {
+      background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+      color: #ffffff;
+      border-color: transparent;
+    }
+
+    .channel-btn.email:hover {
+      background: #ec4899;
+      color: #ffffff;
+      border-color: #ec4899;
+    }
+
+    /* Footer */
+    footer {
+      background: #070a13;
+      padding: 32px 5%;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      text-align: center;
+      color: #64748b;
+      font-size: 0.9rem;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      header nav {
+        display: none; /* Em breve responsivo simples */
+      }
+      .hero-title {
+        font-size: 2.4rem;
+      }
+      .section-title {
+        font-size: 2rem;
+      }
+      .contact-box {
+        padding: 32px 20px;
+      }
+      .channel-btn {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  </style>
 </head>
 <body>
 
-    <div class="container">
-        <div class="badge">Em Construção</div>
-        <h1>Loja <span>Usejem</span></h1>
-        <p>Estamos preparando uma experiência incrível para você. Novidades exclusivas chegam em breve. Cadastre seu e-mail para ser avisado do lançamento!</p>
-        
-        <form class="subscribe-form" onsubmit="event.preventDefault(); alert('Obrigado! Em breve entraremos em contato.');">
-            <input type="email" placeholder="Digite seu melhor e-mail" required>
-            <button type="submit">Avise-me</button>
-        </form>
+  <!-- Navegação Fixa -->
+  <header>
+    <a href="#inicio" class="brand-logo">Loja <span>Usejem</span></a>
+    <nav>
+      <a href="#inicio">Início</a>
+      <a href="#marcas">O que Oferecemos</a>
+      <a href="#contato" class="nav-cta">Falar Conosco</a>
+    </nav>
+  </header>
 
-        <div class="social-icons">
-            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-            <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-        </div>
+  <!-- Seção 1: Início / Apresentação Institucional -->
+  <section id="inicio">
+    <div class="badge">
+      <i class="fa-solid fa-sparkles"></i> Revendedora Oficial
     </div>
+    <h1 class="hero-title">Sua beleza em evidência com os <span>melhores cosméticos</span></h1>
+    <p class="hero-description">
+      Na Loja Usejem, selecionamos criteriosamente produtos de beleza, maquiagem e cuidados pessoais das marcas mais desejadas. Qualidade, autenticidade e entrega rápida para você.
+    </p>
+    <div class="hero-buttons">
+      <a href="#marcas" class="btn-primary">Conhecer Linhas</a>
+      <a href="#contato" class="btn-secondary">Atendimento Personalizado</a>
+    </div>
+  </section>
+
+  <!-- Seção 2: Marcas & Categorias -->
+  <section id="marcas">
+    <div class="badge">
+      <i class="fa-solid fa-gem"></i> Nossas Linhas
+    </div>
+    <h2 class="section-title">O que você encontra na Usejem</h2>
+    <p class="section-subtitle">Trabalhamos com catálogos atualizados para garantir os últimos lançamentos do mercado de cosméticos.</p>
+    
+    <div class="grid-cards">
+      <div class="card">
+        <div class="card-icon">
+          <i class="fa-solid fa-pump-soap"></i>
+        </div>
+        <h3>Skincare & Cuidados</h3>
+        <p>Séruns, hidratantes e protetores solares selecionados para manter sua pele saudável e radiante todos os dias.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">
+          <i class="fa-solid fa-wand-magic-sparkles"></i>
+        </div>
+        <h3>Maquiagem</h3>
+        <p>Bases, batons, sombras e pincéis de alta fixação para produções do dia a dia ou ocasiões especiais.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">
+          <i class="fa-solid fa-spray-can-sparkles"></i>
+        </div>
+        <h3>Perfumaria & Corpo</h3>
+        <p>Fragrâncias marcantes, loções corporais e óleos de banho para momentos únicos de autocuidado.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Seção 3: Atendimento & Contato -->
+  <section id="contato">
+    <div class="contact-box">
+      <div class="badge">
+        <i class="fa-solid fa-headset"></i> Atendimento Direct & WhatsApp
+      </div>
+      <h2 class="section-title">Quer fazer um pedido ou tirar dúvidas?</h2>
+      <p class="section-subtitle" style="margin-bottom: 0;">
+        Nossa equipe de consultoria está pronta para te atender e ajudar na escolha dos produtos ideais para sua rotina.
+      </p>
+
+      <div class="contact-channels">
+        <a href="https://wa.me/5500000000000" target="_blank" class="channel-btn whatsapp">
+          <i class="fa-brands fa-whatsapp"></i> Chamar no WhatsApp
+        </a>
+        <a href="https://instagram.com" target="_blank" class="channel-btn instagram">
+          <i class="fa-brands fa-instagram"></i> Ver no Instagram
+        </a>
+        <a href="mailto:contato@usejem.com.br" class="channel-btn email">
+          <i class="fa-regular fa-envelope"></i> Enviar E-mail
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Rodapé -->
+  <footer>
+    <p>&copy; 2026 Loja Usejem — Revendedora de Cosméticos. Todos os direitos reservados.</p>
+  </footer>
 
 </body>
 </html>
