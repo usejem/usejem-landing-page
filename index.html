@@ -88,6 +88,25 @@
       color: var(--primary);
     }
 
+    /* Botão Hambúrguer Mobile */
+    .menu-toggle {
+      display: none;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 8px;
+      color: var(--primary-dark);
+      font-size: 1.4rem;
+      border-radius: 8px;
+      transition: color 0.2s ease, background-color 0.2s ease;
+      z-index: 1001;
+    }
+
+    .menu-toggle:hover {
+      color: var(--primary);
+      background-color: var(--accent-light);
+    }
+
     .nav-cta {
       background: linear-gradient(135deg, var(--primary) 0%, var(--accent-blush) 100%);
       color: #ffffff !important;
@@ -177,6 +196,10 @@
       flex-direction: column;
       align-items: flex-start;
       text-align: left;
+    }
+
+    .hero-description-mobile {
+      display: none;
     }
 
     .hero-title {
@@ -633,32 +656,113 @@
 
     /* Responsive adjustments */
     @media (max-width: 768px) {
-      header nav {
-        display: none;
-      }
-      #inicio {
-        background: linear-gradient(
-            rgba(252, 248, 246, 0.78),
-            rgba(252, 248, 246, 0.78)
-          ),
-          url('assets/hero-bg.png') center / cover no-repeat;
-        padding: 120px 5% 60px;
+      .menu-toggle {
+        display: inline-flex;
         align-items: center;
-        text-align: center;
+        justify-content: center;
+      }
+
+      header nav {
+        position: fixed;
+        top: 72px;
+        left: 0;
+        right: 0;
+        background: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border-bottom: 1px solid var(--border-soft);
+        box-shadow: 0 16px 30px rgba(186, 110, 89, 0.12);
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        padding: 0 6%;
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        pointer-events: none;
+        transition: max-height 0.35s ease, opacity 0.25s ease, padding 0.35s ease;
+      }
+
+      header nav.open {
+        max-height: 500px;
+        padding: 16px 6% 24px;
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      header nav a {
+        padding: 14px 8px;
+        font-size: 1.05rem;
+        font-weight: 600;
+        border-bottom: 1px solid rgba(186, 110, 89, 0.08);
+      }
+
+      header nav .nav-cta {
+        margin-top: 14px;
+        justify-content: center;
+        padding: 12px 20px;
+        border-bottom: none;
+      }
+
+      #inicio {
+        min-height: 520px;
+        padding: 96px 5% 44px 6%;
+        background: linear-gradient(
+            to right,
+            rgba(252, 248, 246, 0.98) 0%,
+            rgba(252, 248, 246, 0.9) 45%,
+            rgba(252, 248, 246, 0.25) 72%,
+            rgba(252, 248, 246, 0) 92%
+          ),
+          url('assets/hero-bg.png') right center / cover no-repeat;
+        align-items: flex-start;
+        justify-content: center;
+        text-align: left;
       }
       .hero-content {
-        align-items: center;
-        text-align: center;
+        max-width: 65%;
+        padding: 0;
+        align-items: flex-start;
+        text-align: left;
       }
       .hero-title,
       .hero-description {
-        text-align: center;
+        text-align: left;
       }
-      .hero-buttons {
-        justify-content: center;
+      .hero-content .badge {
+        font-size: 0.68rem;
+        padding: 5px 12px;
+        margin-bottom: 12px;
       }
       .hero-title {
-        font-size: 2.4rem;
+        font-size: 1.7rem;
+        line-height: 1.15;
+        margin-bottom: 12px;
+      }
+      .hero-description {
+        font-size: 0.88rem;
+        line-height: 1.45;
+        margin-bottom: 20px;
+        text-shadow: 0 1px 8px rgba(255, 255, 255, 0.95);
+      }
+      .hero-description-desktop {
+        display: none;
+      }
+      .hero-description-mobile {
+        display: inline;
+      }
+      .hero-buttons {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        width: 100%;
+      }
+      .hero-buttons .btn-primary,
+      .hero-buttons .btn-secondary {
+        padding: 10px 18px;
+        font-size: 0.85rem;
+        border-radius: 10px;
+        white-space: nowrap;
       }
       .section-title {
         font-size: 2rem;
@@ -694,7 +798,10 @@
     <a href="#inicio" class="brand-logo" title="usejem">
       <img src="assets/logo.png" alt="usejem - Maquiagem Acessível e Real">
     </a>
-    <nav>
+    <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu de navegação" aria-expanded="false">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+    <nav id="navMenu">
       <a href="#inicio">Início</a>
       <a href="#marketplaces">Onde Comprar</a>
       <a href="#nossas-marcas">Marcas</a>
@@ -714,7 +821,8 @@
       </div>
       <h1 class="hero-title">Sua beleza autêntica com a <span>usejem</span></h1>
       <p class="hero-description">
-        Maquiagem acessível e real. Selecionamos produtos de qualidade para valorizar a sua beleza no dia a dia, com atendimento acolhedor e personalizado.
+        <span class="hero-description-desktop">Maquiagem acessível e real. Selecionamos produtos de qualidade para valorizar a sua beleza no dia a dia, com atendimento acolhedor e personalizado.</span>
+        <span class="hero-description-mobile">Maquiagem e cuidados com a pele para valorizar sua beleza, com preço justo.</span>
       </p>
       <div class="hero-buttons">
         <a href="https://wa.me/5511994788028" target="_blank" rel="noopener noreferrer" class="btn-primary">
@@ -1077,6 +1185,38 @@
   <footer>
     <p>&copy; 2026 usejem — Maquiagem Acessível e Real. Todos os direitos reservados.</p>
   </footer>
+
+  <!-- Script para Controle do Menu Hambúrguer -->
+  <script>
+    const headerEl = document.querySelector('header');
+    const menuToggle = document.getElementById('menuToggle');
+    const navMenu = document.getElementById('navMenu');
+    const toggleIcon = menuToggle.querySelector('i');
+
+    function toggleMenu() {
+      const isOpen = navMenu.classList.toggle('open');
+      menuToggle.setAttribute('aria-expanded', isOpen);
+      toggleIcon.className = isOpen ? 'fa-solid fa-xmark' : 'fa-solid fa-bars';
+    }
+
+    menuToggle.addEventListener('click', toggleMenu);
+
+    // Fecha o menu ao clicar em qualquer link de navegação
+    navMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        if (navMenu.classList.contains('open')) {
+          toggleMenu();
+        }
+      });
+    });
+
+    // Fecha ao clicar fora do cabeçalho/menu
+    document.addEventListener('click', (e) => {
+      if (navMenu.classList.contains('open') && !headerEl.contains(e.target)) {
+        toggleMenu();
+      }
+    });
+  </script>
 
 </body>
 </html>
