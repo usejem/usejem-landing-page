@@ -524,11 +524,25 @@
 
     .marketplaces-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 32px;
-      max-width: 1080px;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 40px;
+      max-width: 1440px;
       width: 100%;
       margin: 0 auto;
+    }
+
+    @media (max-width: 1100px) {
+      .marketplaces-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 28px;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .marketplaces-grid {
+        grid-template-columns: 1fr;
+        gap: 22px;
+      }
     }
 
     .marketplace-card {
