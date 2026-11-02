@@ -379,6 +379,14 @@
       transition: transform 0.35s ease;
     }
 
+    /* A logo Dermachem é horizontal: manter proporção e centralizar dentro do círculo */
+    .brand-circle img[src*="dermachem.svg"] {
+      width: 88%;
+      height: auto;
+      border-radius: 0;
+      object-fit: contain;
+    }
+
     .brand-circle-item:hover .brand-circle img {
       transform: scale(1.08);
     }
